@@ -7,37 +7,11 @@
 
 import SwiftUI
 
-@MainActor
-final class SignInEmailViewModel: ObservableObject {
-    
-    @Published var email: String = ""
-    @Published var password: String = ""
-    
-    func signIn() {
-        guard !email.isEmpty, !password.isEmpty else {
-            print("No email or password found")
-            return
-        }
-        
-        Task {
-            do {
-                let returnedDataUser = try await AunthetificationManager.shared.createUser(email: email, password: password)
-                print("Success")
-                print(returnedDataUser)
-            } catch {
-                print("Error: \(error)")
-            }
-        }
-        
-        
-        
-    }
-}
-
-
 struct SignInEmailView: View {
     
     @StateObject private var viewModel = SignInEmailViewModel()
+    @Binding var showSingInView: Bool
+    
     var body: some View {
         VStack {
             TextField("Email...", text: $viewModel.email)
@@ -51,7 +25,24 @@ struct SignInEmailView: View {
                 .cornerRadius(10)
             
             Button {
-                viewModel.signIn()
+                Task {
+                    do {
+                        try await viewModel.signUp()
+                        showSingInView = false
+                        return
+                    } catch {
+                        print(error)
+                    }
+                    
+                    do {
+                        try await viewModel.signIn()
+                        showSingInView = false
+                        return
+                    } catch {
+                        print(error)
+                    }
+                }
+                
             } label: {
                 Text("Sign in")
                     .font(.headline)
@@ -73,6 +64,6 @@ struct SignInEmailView: View {
 
 #Preview {
     NavigationStack {
-        SignInEmailView()
+        SignInEmailView(showSingInView: .constant(false))
     }
 }
