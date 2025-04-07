@@ -23,9 +23,14 @@ struct SettingView: View {
                     }
                 }
             }
+            if viewModel.authProviders.contains(.email) {
+                emailSection
+            }
             
-            emailSection
              
+        }
+        .onAppear {
+            viewModel.loadAuthProviders()
         }
         .navigationTitle("Setting")
     }
