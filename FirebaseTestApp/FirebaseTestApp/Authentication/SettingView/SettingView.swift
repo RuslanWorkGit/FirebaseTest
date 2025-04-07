@@ -24,6 +24,22 @@ struct SettingView: View {
                 }
             }
             
+            emailSextion
+             
+        }
+        .navigationTitle("Setting")
+    }
+}
+
+#Preview {
+    NavigationStack {
+        SettingView(showSignInView: .constant(false))
+    }
+}
+
+extension SettingView {
+    private var emailSextion: some View {
+        Section {
             Button("Reset password") {
                 Task {
                     do {
@@ -56,13 +72,9 @@ struct SettingView: View {
                     }
                 }
             }
-        }
-        .navigationTitle("Setting")
-    }
-}
 
-#Preview {
-    NavigationStack {
-        SettingView(showSignInView: .constant(false))
+        } header: {
+            Text("Email functions")
+        }
     }
 }
