@@ -34,6 +34,13 @@ final class AunthetificationManager {
         return AuthDataResultModel(user: user)
     }
     
+    func signOut() throws {
+        try Auth.auth().signOut()
+    }
+}
+
+//MARK: SIGN IN EMAIL
+extension AunthetificationManager {
     func createUser(email: String, password: String) async throws -> AuthDataResultModel {
         let authDataResults = try await Auth.auth().createUser(withEmail: email, password: password)
         let results = AuthDataResultModel(user: authDataResults.user)
@@ -43,7 +50,7 @@ final class AunthetificationManager {
     
     func signInUser(email: String, password: String) async throws -> AuthDataResultModel {
         let authDataResult = try await Auth.auth().signIn(withEmail: email, password: password)
-        return AuthDataResultModel(user: authDataResult.user) 
+        return AuthDataResultModel(user: authDataResult.user)
     }
     
     func resetPassword(email: String) async throws {
@@ -65,8 +72,18 @@ final class AunthetificationManager {
         
         try await user.updateEmail(to: email)
     }
+}
+
+//MARK: SIGN IN SSO
+extension AunthetificationManager {
     
-    func signOut() throws {
-        try Auth.auth().signOut()
+    func signInWithGoogle(tokens: GoogleSignInResultmodel) async throws -> AuthDataResultModel {
+        let credential = GoogleAuthProvider.credential(withIDToken: tokens.idToken, accessToken: tokens.accessToken)
+        return try await signIn(credential: credential)
+    }
+    
+    func signIn(credential: AuthCredential) async throws -> AuthDataResultModel {
+        let authDataResult = try await Auth.auth().signIn(with: credential)
+        return AuthDataResultModel(user: authDataResult.user )
     }
 }

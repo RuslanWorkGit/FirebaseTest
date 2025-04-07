@@ -24,7 +24,7 @@ struct SettingView: View {
                 }
             }
             
-            emailSextion
+            emailSection
              
         }
         .navigationTitle("Setting")
@@ -38,7 +38,7 @@ struct SettingView: View {
 }
 
 extension SettingView {
-    private var emailSextion: some View {
+    private var emailSection: some View {
         Section {
             Button("Reset password") {
                 Task {
