@@ -27,10 +27,15 @@ struct SettingView: View {
                 emailSection
             }
             
+            if viewModel.authUser?.isAnonymus == true {
+                anonymusSection
+            }
+            
              
         }
         .onAppear {
             viewModel.loadAuthProviders()
+            viewModel.loadAuthUser()
         }
         .navigationTitle("Setting")
     }
@@ -80,6 +85,32 @@ extension SettingView {
 
         } header: {
             Text("Email functions")
+        }
+    }
+    
+    private var anonymusSection: some View {
+        Section {
+            Button("Link Google Account") {
+                Task {
+                    do {
+                        try await viewModel.loadAuthUser()
+                    } catch {
+                        print(error)
+                    }
+                }
+            }
+            
+            Button("Link email Account") {
+                Task {
+                    do {
+                        try await viewModel.loadAuthUser()
+                    } catch {
+                        print(error)
+                    }
+                }
+            }
+        } header: {
+            Text("Create Account")
         }
     }
 }

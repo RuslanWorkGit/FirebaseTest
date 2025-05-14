@@ -11,12 +11,19 @@ import SwiftUI
 final class SettingViewModel: ObservableObject {
     
     @Published var authProviders: [AuthProviderOption] = []
+    @Published var authUser: AuthDataResultModel? = nil
     
     func loadAuthProviders() {
         if let provider = try? AunthetificationManager.shared.getProvider() {
             authProviders = provider
         }
     }
+    
+    func loadAuthUser() {
+        self.authUser = try? AunthetificationManager.shared.getAuthenticatedUser()
+    }
+    
+    
     
     func signOut() throws {
         try AunthetificationManager.shared.signOut()
