@@ -16,6 +16,27 @@ struct AuntheticationView: View {
     
     var body: some View {
         VStack {
+            
+            Button {
+                Task {
+                    do {
+                        try await viewModel.signInAnonymus()
+                        showSignInView = false
+                    } catch {
+                        print(error)
+                    }
+                }
+            } label: {
+                Text("Anonymus")
+                    .font(.headline)
+                    .padding()
+                    .foregroundColor(Color.black)
+                    .frame(maxWidth: .infinity)
+                    .background(Color.orange)
+                    .cornerRadius(10)
+            }
+
+            
             NavigationLink {
                 SignInEmailView(showSingInView: $showSignInView)
             } label: {
@@ -23,7 +44,7 @@ struct AuntheticationView: View {
                     .font(.headline)
                     .padding()
                     .foregroundColor(.white)
-                    .frame(height: 55)
+                    .frame(maxWidth: .infinity)
                     .background(Color.blue)
                     .cornerRadius(10)
          

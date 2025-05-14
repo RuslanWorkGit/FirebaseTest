@@ -12,11 +12,13 @@ struct AuthDataResultModel {
     let uid: String
     let email: String?
     let photoUrl: String?
+    let isAnonymus: Bool
     
     init(user: User) {
         self.uid = user.uid
         self.email = user.email
         self.photoUrl = user.photoURL?.absoluteString
+        self.isAnonymus = user.isAnonymous
     }
 }
 
@@ -52,6 +54,7 @@ final class AunthetificationManager {
                 assertionFailure("Providers option not found: \(provider.providerID)")
             }
         }
+        print(providers)
         return providers
     }
     
@@ -106,5 +109,18 @@ extension AunthetificationManager {
     func signIn(credential: AuthCredential) async throws -> AuthDataResultModel {
         let authDataResult = try await Auth.auth().signIn(with: credential)
         return AuthDataResultModel(user: authDataResult.user )
+    }
+    
+    
+}
+
+//MARK: - Sign in anonumys
+
+extension AunthetificationManager {
+    
+    @discardableResult
+    func signInAnonymus() async throws -> AuthDataResultModel {
+        let authDataResult = try await Auth.auth().signInAnonymously()
+        return AuthDataResultModel(user: authDataResult.user)
     }
 }

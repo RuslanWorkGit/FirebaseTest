@@ -36,6 +36,6 @@ struct ProfileView: View {
 
 #Preview {
     NavigationStack {
-       // ProfileView()
+        ProfileView(showSignInView: .constant(false))
     }
 }

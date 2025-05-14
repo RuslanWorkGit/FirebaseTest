@@ -18,4 +18,8 @@ final class AuthenticationViewModel: ObservableObject {
         let token = try await helper.signIn()
         try await AunthetificationManager.shared.signInWithGoogle(tokens: token)
     }
+    
+    func signInAnonymus() async throws {
+        try await AunthetificationManager.shared.signInAnonymus()
+    }
 }
