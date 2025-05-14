@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9B6994082D9EE2BC009EA7A0 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 9B6994072D9EE2BC009EA7A0 /* FirebaseAnalytics */; };
 		9B69940B2DA13F82009EA7A0 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 9B69940A2DA13F82009EA7A0 /* FirebaseAuth */; };
+		9B7AB8672DD34AA1002326BA /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 9B7AB8662DD34AA1002326BA /* FirebaseFirestore */; };
 		9BD18DEB2DA3D722003A0B7F /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 9BD18DEA2DA3D722003A0B7F /* GoogleSignIn */; };
 		9BD18DED2DA3D722003A0B7F /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9BD18DEC2DA3D722003A0B7F /* GoogleSignInSwift */; };
 /* End PBXBuildFile section */
@@ -46,6 +47,7 @@
 				9B6994082D9EE2BC009EA7A0 /* FirebaseAnalytics in Frameworks */,
 				9B69940B2DA13F82009EA7A0 /* FirebaseAuth in Frameworks */,
 				9BD18DEB2DA3D722003A0B7F /* GoogleSignIn in Frameworks */,
+				9B7AB8672DD34AA1002326BA /* FirebaseFirestore in Frameworks */,
 				9BD18DED2DA3D722003A0B7F /* GoogleSignInSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -101,6 +103,7 @@
 				9B69940A2DA13F82009EA7A0 /* FirebaseAuth */,
 				9BD18DEA2DA3D722003A0B7F /* GoogleSignIn */,
 				9BD18DEC2DA3D722003A0B7F /* GoogleSignInSwift */,
+				9B7AB8662DD34AA1002326BA /* FirebaseFirestore */,
 			);
 			productName = FirebaseTestApp;
 			productReference = 9B069A832D9E6B3700550A97 /* FirebaseTestApp.app */;
@@ -396,6 +399,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9B6994062D9EE2BC009EA7A0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
+		};
+		9B7AB8662DD34AA1002326BA /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9B6994062D9EE2BC009EA7A0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
 		};
 		9BD18DEA2DA3D722003A0B7F /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;
